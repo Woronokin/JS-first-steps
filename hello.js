@@ -91,7 +91,7 @@ do {
 
 /* for - цикл с параметром (для [всех значений])
 выполнить начало - инициализация (присвоим переменной i значение 0)
- - условие завершения (пока i < 10)
+ - условие завершения (пока i < 3)
  - продвижение (прибавлять единицу к i в конце каждого шага) */
 for (var i=0; i < 3; i++) {
 	console.log(i);
@@ -147,7 +147,7 @@ let sym = Symbol("name")
 
 
 let user = {
-	name : "Philipp", // свойства объекта
+	username : "Philipp", // свойства объекта
 	age : 24,
 	human : true,
 	"favourite music band" : "BEP",
@@ -184,9 +184,72 @@ console.log(typeof Symbol());
 console.log(typeof null); // ошибка признанная официально
 
 // Функция — это именованный фрагмент кода, к которому можно обратиться из другого места программы.
-function sayHello() {
-	console.log('Hello, %s!' , name); /* Функция может принимать произвольное количество аргументов,
+function sayHello(newname) {
+	console.log('Hello, %s!' , newname); 
+}; /* Функция может принимать произвольное количество аргументов,
 	 которые передаются в нее в момент вызова. */
+
+sayHello("Alice"); // выводим функцию
+
+var student = "James";
+
+// глобальная переменная
+function changeName() {
+	student = "Ivan";
+};
+changeName();
+console.log(student);
+
+// Функция также может вернуть результат
+// вычислений с помощью return
+
+function sum(a, b) {
+	return a+b;
 }
 
-sayHello(); // выводим функцию
+console.log(sum(4,5));
+console.log(sum(789,11875));
+
+// современный стандарт функции через =>
+// функция короче, а результат тот же
+
+let calc = (a, b) => a + b;
+console.log(sum(4,5));
+console.log(typeof calc());
+
+/* анонимная функция - имя функции можно опустить,
+если объявление фукнции является частью
+другого оператора (например, вызова или присваивания) */
+
+[1,2,3].map(function(i) { return i + 1 }); 
+// Здесь в функцию map передается анонимная функция,
+// которая вызывается для каждого элемента массива.
+
+/* Функция как аргумент - sayHelloAsync, закончив свою основную работу
+вызывает переданную функцию cb (от callback - функция обратного вызова) */
+function sayHelloAsync(name2, cb) {
+ 
+	console.log('Hello, %s!' , name2);
+	cb() 
+}
+
+sayHelloAsync("Alice", function() {
+	console.log("How are you?")
+});
+
+var alice = {
+  name: 'Alice',
+  age: 26,
+  getProfile: function() {
+    return this.name + ', age ' + this.age;
+  }
+};
+
+var bob = {
+  name: 'Bob',
+  age: 31
+};
+
+var profile = alice.getProfile.call(bob);
+
+console.log(profile);
