@@ -110,6 +110,7 @@ for (var i = 0; i < 3; i++) {
 '\uXXXX' // символ юникод, где XXXX это 16-ричный код символа
 // бывают двойные, одинарные (между '' и "" разницы нет) и обратные ковычки (``)
 // обратные ковычки позволяют встраивать в строку некие выражения
+// так же обратные ковычки учитывают перенос строк, но такие ковычки чуть дольше обрабатываются
 let userAge = 18;
 let userAgenInfo = `Возраст: ${userAge}`;
 console.log (userAgeInfo);
@@ -158,7 +159,7 @@ let user = {
 	username: "Philipp", // свойства объекта
 	age: 24,
 	human: true,
-	"favourite music band": "BEP",
+	"favourite music band": "BEP, Pogo",
 	// функция объекта (метод)
 	breathe: function () {
 		console.log("I am alive!")
@@ -189,7 +190,7 @@ console.log(typeof false);
 console.log(typeof "string");
 console.log(typeof undefined);
 console.log(typeof Symbol());
-console.log(typeof null); // ошибка признанная официально
+console.log(typeof null); // ошибка признанная официально , null - это пустое значение
 
 // Функция — это именованный фрагмент кода, к которому можно обратиться из другого места программы.
 function sayHello(newname) {
